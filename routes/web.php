@@ -7,6 +7,11 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\MediaController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,4 +69,25 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::group(['middleware' => ['auth','verified']], function() {  
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/news-ticker', [AdminController::class, 'newsTicker'])->name('admin.news_ticker');
+    Route::get('/image-message', [AdminController::class, 'imageMessage'])->name('admin.image_message');
+    Route::get('/important-links', [AdminController::class, 'importantLink'])->name('admin.important_link');
+    Route::get('/other-services', [AdminController::class, 'otherService'])->name('admin.other_service');
+
+    Route::get('/post', [PostController::class, 'index'])->name('admin.post.index');
+    Route::get('/post/create', [PostController::class, 'create'])->name('admin.post.create');
+    Route::get('/post/category', [PostController::class, 'category'])->name('admin.post.category');
+
+    Route::get('/page', [PageController::class, 'index'])->name('admin.page.index');
+    Route::get('/page/create', [PageController::class, 'create'])->name('admin.page.create');
+
+    Route::get('/media', [MediaController::class, 'index'])->name('admin.media.index');
+    Route::get('/media/create', [MediaController::class, 'create'])->name('admin.media.create');
+
+    Route::get('/user', [UserController::class, 'index'])->name('admin.user.index');
+    Route::get('/user/create', [UserController::class, 'create'])->name('admin.user.create');
+    Route::get('/user/profile', [UserController::class, 'profile'])->name('admin.user.profile');
+    Route::get('/user/role', [UserController::class, 'role'])->name('admin.user.role');
+
+    Route::get('/setting', [SettingController::class, 'index'])->name('admin.setting.index');
 });

@@ -13,11 +13,23 @@ class AdminController extends Controller
         // return view('admin.order.index', compact('orders'));
         return view('admin.dashboard');
     }
-    public function show($id)
+    public function newsTicker()
     {
-        $order = Order::find( $id);
-        $order->view = 1;
-        $order->save();
-        return view('admin.order.show', compact('order'));
+        return view('admin.news_ticker');
+    }
+    
+    public function imageMessage()
+    {
+        return view('admin.image_messages');
+    }
+
+    public function importantLink()
+    {
+        return view('admin.important_links');
+    }
+
+    public function otherService()
+    {
+        return view('admin.other_services');
     }
 }
